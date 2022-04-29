@@ -8,7 +8,8 @@ const { response } = require("../app");
 // READ - list all characters
 router.get("/", (req, res, next) => { // we need this too
 
-  axios.get("https://ih-crud-api.herokuapp.com/characters")
+  //axios.get("https://ih-crud-api.herokuapp.com/characters")
+  axios.get(`${process.env.API_URL}/characters`)
     .then( response => {
       console.log("list of characters....")
       console.log(response.data)
@@ -66,7 +67,8 @@ router.post('/create', (req, res, next) => {  //  /create is what you visit in t
 // GET DETAILS OF ONE CHARACTER
 router.get("/:characterId", (req, res, next) => { // see details of only ONE character
   
-  axios.get(`https://ih-crud-api.herokuapp.com/characters/${req.params.characterId}`)
+  // axios.get(`https://ih-crud-api.herokuapp.com/characters/${req.params.characterId}`)
+  axios.get(`${process.env.API_URL}/characters/${req.params.characterId}`)
   .then( response => {
     res.render("characters/character-details", response.data);
     //console.log(response);
